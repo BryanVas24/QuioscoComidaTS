@@ -15,3 +15,17 @@ async function main() {
     console.error(error);
   }
 }
+
+main()
+  .then(async () => {
+    //si todo se ejecuta correctamente inserta los datos y se desconecta
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    //sino muestra el error en consola
+    console.error(e);
+    //se desconecta de la db
+    await prisma.$disconnect();
+    //detiene la ejecución de la aplicación
+    process.exit(1);
+  });
