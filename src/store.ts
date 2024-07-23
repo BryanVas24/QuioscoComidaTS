@@ -6,9 +6,21 @@ interface Store {
   order: OrderItem[];
   addToOrder: (product: Product) => void;
 }
-export const useStore = create<Store>(() => ({
+export const useStore = create<Store>((set) => ({
   order: [],
   addToOrder: (product) => {
-    console.log("Agregando ", product);
+    //esto es para omitir datos
+    const { categoryId, image, ...data } = product;
+    //set te permite escribir en el state
+    set((state) => ({
+      order: [
+        ...state.order,
+        {
+          ...data,
+          quantity: 1,
+          subtotal: 1 * product.price,
+        },
+      ],
+    }));
   },
 }));
