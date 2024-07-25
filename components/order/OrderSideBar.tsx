@@ -1,5 +1,6 @@
 import { prisma } from "@/src/libs/prisma";
 import CategoryIcon from "@/ui/CategoryIcon";
+import Logo from "@/ui/logo";
 
 //función para traer todas las categorias
 async function getCategories() {
@@ -11,6 +12,7 @@ const OrderSideBar = async () => {
 
   return (
     <aside className="md:w-72 md:h-screen bg-white">
+      <Logo />
       <nav className="mt-10">
         {categories.map((category) => (
           <CategoryIcon key={category.id} CategoryInfo={category} />
