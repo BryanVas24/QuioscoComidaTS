@@ -13,7 +13,7 @@ export default function OrderSummary() {
     [order]
   );
 
-  const handleCreateOrder = () => {
+  const handleCreateOrder = (formData: FormData) => {
     createOrder();
   };
   return (
@@ -31,6 +31,12 @@ export default function OrderSummary() {
             <span className="font-bold">{formatCurrency(total)}</span>
           </p>
           <form className="w-full mt-10 space-y-5" action={handleCreateOrder}>
+            <input
+              type="text"
+              placeholder="Tu nombre"
+              className="bg-white border border-gray-100 w-full"
+              name="name"
+            />
             <input
               type="submit"
               value={"Confirmar pedido"}
