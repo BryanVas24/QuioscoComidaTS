@@ -4,6 +4,7 @@ import ProductDetails from "./ProductDetails";
 import { useMemo } from "react";
 import { formatCurrency } from "@/src/utils";
 import { createOrder } from "@/actions/create-order-action";
+import { OrderSchema } from "@/src/schema";
 
 export default function OrderSummary() {
   const order = useStore((state) => state.order);
@@ -14,6 +15,13 @@ export default function OrderSummary() {
   );
 
   const handleCreateOrder = (formData: FormData) => {
+    const data = {
+      name: formData.get("name"),
+    };
+
+    const result = OrderSchema.safeParse(data);
+    console.log(result);
+    return;
     createOrder();
   };
   return (
@@ -34,7 +42,7 @@ export default function OrderSummary() {
             <input
               type="text"
               placeholder="Tu nombre"
-              className="bg-white border border-gray-100 w-full"
+              className="bg-white  p-2 border-gray-300 w-full"
               name="name"
             />
             <input
