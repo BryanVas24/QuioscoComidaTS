@@ -15,7 +15,7 @@ export default function OrderSummary() {
     [order]
   );
 
-  const handleCreateOrder = (formData: FormData) => {
+  const handleCreateOrder = async (formData: FormData) => {
     const data = {
       name: formData.get("name"),
     };
@@ -26,9 +26,14 @@ export default function OrderSummary() {
       result.error.issues.forEach((issue) => {
         toast.error(issue.message);
       });
+      return;
     }
-    return;
-    createOrder();
+    const response = await createOrder(data);
+    if (response?.errors) {
+      response?.errors.forEach((issue) => {
+        toast.error(issue.message);
+      });
+    }
   };
   return (
     <aside className="md:h-screen md:overflow-y-scroll md:w-64 lg:w-96 p-5">
