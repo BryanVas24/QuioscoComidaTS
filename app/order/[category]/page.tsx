@@ -1,6 +1,7 @@
 import ProductCard from "@/components/products/ProductCard";
 import { categories } from "@/prisma/data/categories";
 import { prisma } from "@/src/libs/prisma";
+import Heading from "@/ui/Heading";
 
 async function getProducts(category: string) {
   const products = await prisma.product.findMany({
@@ -22,9 +23,7 @@ export default async function Orderpage({
 
   return (
     <>
-      <h1 className="text-2xl my-10">
-        Elige y personaliza tu pedido a continuación
-      </h1>
+      <Heading>Elige y personaliza tu pedido a continuación</Heading>
       <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 items-start">
         {products.map((product) => (
           <ProductCard key={product.id} productInformation={product} />

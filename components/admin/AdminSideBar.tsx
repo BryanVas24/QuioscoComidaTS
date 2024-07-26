@@ -1,4 +1,4 @@
-import Logo from "@/ui/logo";
+import Logo from "@/ui/Logo";
 
 const adminNavigation = [
   { url: "/admin/orders", text: "Ordenes", blank: false },

@@ -1,5 +1,11 @@
+import Heading from "@/ui/Heading";
+
 function OrdersPage() {
-  return <div>dajhdskljkl</div>;
+  return (
+    <>
+      <Heading>Administrar ordenes</Heading>
+    </>
+  );
 }
 
 export default OrdersPage;
