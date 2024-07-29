@@ -1,6 +1,26 @@
+"use client";
+import { SearchSchema } from "@/src/schema";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+
 export default function ProductSearchForm() {
+  const router = useRouter();
+
+  const handleSearchForm = (formData: FormData) => {
+    const data = {
+      search: formData.get("search"),
+    };
+    const result = SearchSchema.safeParse(data);
+    if (!result.success) {
+      result.error.issues.forEach((issuue) => {
+        toast.error(issuue.message);
+      });
+      return;
+    }
+    router.push(`/admin/produscts/search?search=${result.data.search}`);
+  };
   return (
-    <form className="flex items-center">
+    <form action={handleSearchForm} className="flex items-center">
       <input
         type="text"
         placeholder="Buscar producto"
