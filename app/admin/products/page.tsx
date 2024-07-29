@@ -2,6 +2,7 @@ import ProductsPagination from "@/components/products/ProductsPagination";
 import ProductTable from "@/components/products/ProsuctTable";
 import { prisma } from "@/src/libs/prisma";
 import Heading from "@/ui/Heading";
+import { redirect } from "next/navigation";
 
 async function productCount() {
   //cuenta los registros
@@ -29,6 +30,8 @@ export default async function page({
   const page = +searchParams.page || 1;
   const pageSize = 10;
 
+  if (page < 0) redirect("/admin/products");
+
   const productsData = await getproducts(page, pageSize);
   const totalProductsData = await productCount();
 
@@ -38,6 +41,8 @@ export default async function page({
   ]);
 
   const totalPages = Math.ceil(totalProducts / pageSize);
+
+  if (page > totalPages) redirect("/admin/products");
 
   return (
     <>
