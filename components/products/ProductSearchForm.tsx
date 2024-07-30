@@ -17,7 +17,7 @@ export default function ProductSearchForm() {
       });
       return;
     }
-    router.push(`/admin/produscts/search?search=${result.data.search}`);
+    router.push(`/admin/products/search?search=${result.data.search}`);
   };
   return (
     <form action={handleSearchForm} className="flex items-center">
