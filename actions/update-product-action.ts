@@ -17,5 +17,6 @@ export async function updateproduct(data: unknown, id: number) {
     },
     data: result.data,
   });
+  //revalida los datos
   revalidatePath("/admin/products");
 }
