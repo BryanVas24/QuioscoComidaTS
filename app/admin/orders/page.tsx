@@ -17,7 +17,9 @@ function OrdersPage() {
     refreshInterval: 60000,
     revalidateOnFocus: false,
   });
-  if (isLoading) return "Cargando...";
+  if (isLoading)
+    return <p className="text-center text-amber-600 mt-20">Cargando...</p>;
+
   if (data)
     return (
       <>
